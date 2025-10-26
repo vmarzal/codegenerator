@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: Genetica API
+  version: 1.0.0
+
+paths:
+  /pacientes:
+    get:
+      operationId: listarPacientes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Paciente'
+    post:
+      operationId: crearPaciente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Paciente'
+      responses:
+        '201':
+          description: Creado
+
+components:
+  schemas:
+    Paciente:
+      type: object
+      properties:
+        id:
+          type: string
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        fechaNacimiento:
+          type: string
+          format: date
+          pattern: dd/MM/yyyy
+          description: Fecha de nacimiento del paciente

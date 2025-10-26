@@ -1,0 +1,1 @@
+Las clases autogeneradas residen en /target/generated-sources

@@ -1,0 +1,12 @@
+spring:
+  docker:
+    compose:
+      file: src/main/resources/docker-compose.yml
+      lifecycle-management: start-only
+      start:
+        command: up
+      stop:
+        command: down
+  data:
+    mongodb:
+      database: myappdb
