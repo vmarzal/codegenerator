@@ -12,7 +12,7 @@
 
 	<groupId>com.hideout.pocs.swagger</groupId>
 	<artifactId>codegen</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.1</version>
 	<name>Swagger Codegen PoC</name>
 	<description>Proof of concept for the Swagger Codegen</description>
 
@@ -21,6 +21,7 @@
         <spring.boot.version>3.5.7</spring.boot.version>
         <openapi.generator.version>7.16.0</openapi.generator.version>
         <mapstruct.version>1.6.2</mapstruct.version>
+        <build-helper.plugin>3.5.0</build-helper.plugin>
     </properties>
 
     <dependencyManagement>
@@ -170,6 +171,25 @@
                                 <useJakartaEe>true</useJakartaEe>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                             </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build-helper.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>add-generated-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources</source>
+                            </sources>
                         </configuration>
                     </execution>
                 </executions>
